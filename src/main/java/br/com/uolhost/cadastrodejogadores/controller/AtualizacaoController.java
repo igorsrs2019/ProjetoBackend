@@ -1,6 +1,6 @@
 package br.com.uolhost.cadastrodejogadores.controller;
 
-import javax.transaction.Transactional;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,11 @@ public class AtualizacaoController {
 	
 	
 	@PutMapping("atualizar/{id}")
-	@Transactional
+	
 	public  ResponseEntity<Jogador> atualizar (@PathVariable Long id, @RequestBody  AtualizacaoJogadorForm form){
 	Jogador jogador = form.atualizar(id, cadastrorepository);
 	
-	return ResponseEntity.ok(new Jogador(jogador));
+	return ResponseEntity.ok(jogador);
 	
 }
 }

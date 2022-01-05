@@ -1,5 +1,6 @@
 package br.com.uolhost.cadastrodejogadores.modelo;
 
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,11 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Jogador {
-
+	
 		@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+		
 		private Long id;
 		private String nome;
 		private String email;

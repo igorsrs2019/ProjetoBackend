@@ -1,7 +1,10 @@
 package br.com.uolhost.cadastrodejogadores.controller.form;
 
+
 import br.com.uolhost.cadastrodejogadores.modelo.Jogador;
 import br.com.uolhost.cadastrodejogadores.repository.CadastroRepository;
+
+
 
 public class AtualizacaoJogadorForm {
 
@@ -38,7 +41,9 @@ public class AtualizacaoJogadorForm {
 	
 	
 	public Jogador atualizar(Long id, CadastroRepository cadastrorepository) {
+		
 		Jogador jogador = cadastrorepository.getById(id);
+
 		
 		jogador.setNome(this.nome);
 		jogador.setEmail(this.email);

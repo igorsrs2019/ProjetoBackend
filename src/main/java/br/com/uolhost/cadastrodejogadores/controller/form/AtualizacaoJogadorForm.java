@@ -1,6 +1,13 @@
 package br.com.uolhost.cadastrodejogadores.controller.form;
 
 
+
+
+
+
+
+import javax.validation.constraints.NotNull;
+
 import br.com.uolhost.cadastrodejogadores.modelo.Jogador;
 import br.com.uolhost.cadastrodejogadores.repository.CadastroRepository;
 
@@ -8,10 +15,14 @@ import br.com.uolhost.cadastrodejogadores.repository.CadastroRepository;
 
 public class AtualizacaoJogadorForm {
 
-	
+	@NotNull
 	private String nome;
+
 	private String email;
+	
+
 	private String telefone;
+	
 	private String codinome;
 	
 	public String getNome() {
@@ -40,7 +51,7 @@ public class AtualizacaoJogadorForm {
 	}
 	
 	
-	public Jogador atualizar(Long id, CadastroRepository cadastrorepository) {
+	public Jogador atualizar(Long id , CadastroRepository cadastrorepository) {
 		
 		Jogador jogador = cadastrorepository.getById(id);
 

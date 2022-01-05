@@ -3,6 +3,8 @@ package br.com.uolhost.cadastrodejogadores.controller;
 
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,7 @@ public class AtualizacaoController {
 	
 	@PutMapping("atualizar/{id}")
 	
-	public  ResponseEntity<Jogador> atualizar (@PathVariable Long id, @RequestBody  AtualizacaoJogadorForm form){
+	public  ResponseEntity<Jogador> atualizar (@PathVariable @Valid  Long id, @RequestBody  AtualizacaoJogadorForm form){
 	Jogador jogador = form.atualizar(id, cadastrorepository);
 	
 	return ResponseEntity.ok(jogador);

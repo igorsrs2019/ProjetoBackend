@@ -1,12 +1,18 @@
 package br.com.uolhost.cadastrodejogadores.controller;
 
+
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.uolhost.cadastrodejogadores.modelo.Jogador;
 import br.com.uolhost.cadastrodejogadores.repository.CadastroRepository;
+
 
 
 @RestController
@@ -17,7 +23,7 @@ public class CadastroController {
 	
 	
 	@PostMapping("/cadastrar")
-	public void cadastrar (@RequestBody Jogador jogador) {
+	public void cadastrar (@RequestBody @Valid Jogador jogador) {
 		cadastrorepository.save(jogador);
 		
 		

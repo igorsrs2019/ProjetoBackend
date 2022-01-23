@@ -1,10 +1,13 @@
 package br.com.uolhost.cadastrodejogadores.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.uolhost.cadastrodejogadores.dto.JogadorDTO;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,39 +16,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.uolhost.cadastrodejogadores.controller.form.AtualizacaoJogadorForm;
 import br.com.uolhost.cadastrodejogadores.modelo.Jogador;
-import br.com.uolhost.cadastrodejogadores.repository.CadastroRepository;
+import br.com.uolhost.cadastrodejogadores.repository.JogadorRepository;
 
 @RestController
+@AllArgsConstructor
 public class JogadorController {
-	
-	@Autowired
-	private CadastroRepository cadastrorepository;
-	
+
+	private final JogadorRepository repository;
+
 	@PostMapping(value= "/jogador",  produces="application/json", consumes="application/json")
-	public ResponseEntity cadastrar (@RequestBody Jogador jogador) {
-		cadastrorepository.save(jogador);	
+	public ResponseEntity saveJogador(@RequestBody Jogador jogador){
+		repository.save(jogador);
 		return ResponseEntity.ok("criado!");
 	}
 	
 	@GetMapping(value= "/jogador", produces="application/json", consumes="application/json")
-	public  List<Jogador> lista () {
-		final List<Jogador> jogadores = cadastrorepository.findAll();
+	public  List<Jogador> listAll(){
+		final List<Jogador> jogadores = repository.findAll();
 		return (jogadores);
+	}
+
+	@GetMapping(value= "/jogador/{id}", produces="application/json", consumes="application/json")
+	public  Jogador listById(@PathVariable Long id) {
+		final Optional<Jogador> jogadores = repository.findById(id);
+		return (jogadores.get());
 	}
 	
 	@PutMapping(value = "jogador/{id}", produces="application/json", consumes="application/json")
 	@Transactional
-	public  ResponseEntity<Jogador> atualizar (@PathVariable Long id, @RequestBody  AtualizacaoJogadorForm form){
-		Jogador jogador = form.atualizar(id, cadastrorepository);
-		return ResponseEntity.ok(jogador);
+	public  ResponseEntity<JogadorDTO> alterJogador(@PathVariable Long id, @RequestBody JogadorDTO jogador){
+		if(jogador != null || id != null){
+			repository.getById(id);
+			return ResponseEntity.ok(jogador);
+		}
+		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
 	@DeleteMapping(value = "jogador/{id}", produces="application/json", consumes="application/json")
 	public ResponseEntity<?> excluir (@PathVariable Long id ) {
-		cadastrorepository.deleteById(id);
+		repository.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
 

@@ -1,7 +1,6 @@
 package br.com.uolhost.cadastrodejogadores.exception;
 
 public class ResourceHttpIsNotAvailableException extends Throwable {
-
     public ResourceHttpIsNotAvailableException(){
         super("Resource is not available!");
     }

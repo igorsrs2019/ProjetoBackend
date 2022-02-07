@@ -1,6 +1,6 @@
 package br.com.uolhost.cadastrodejogadores.modelo;
 
-public enum TipoDeGrupo {
+public enum GruposEnum {
 	LIGA_DA_JUSTICA,
 	OS_VINGADORES;
 }

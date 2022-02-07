@@ -1,6 +1,6 @@
 package br.com.uolhost.cadastrodejogadores.dto;
 
-import br.com.uolhost.cadastrodejogadores.modelo.TipoDeGrupo;
+import br.com.uolhost.cadastrodejogadores.modelo.GruposEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +13,5 @@ public class JogadorDTO {
     private String email;
     private String telefone;
     private String codinome;
-    private TipoDeGrupo grupo;
+    private GruposEnum grupo;
 }

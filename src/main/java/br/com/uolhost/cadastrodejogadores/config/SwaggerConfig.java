@@ -3,6 +3,7 @@ package br.com.uolhost.cadastrodejogadores.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Configuration
 @EnableSwagger2
+@EnableWebMvc
 public class SwaggerConfig {
     @Bean
     public Docket api() {
